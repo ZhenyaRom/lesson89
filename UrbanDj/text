@@ -1,0 +1,22 @@
+python manage.py shell
+>>> from example1.models import Category
+>>> from example1.models import News
+>>> Category.objects.create(name='sport')
+>>> Category.objects.create(name='economic')
+>>> Category.objects.create(name='politic)
+>>> a=Category.objects.get(name='sport')
+>>> News.objects.create(title='soccer', context='football', category=a)
+>>> a=Category.objects.get(name='economic')
+>>> News.objects.create(title='dollar',context='creditcard', category=a )
+>>> a=Category.objects.get(name='sport')
+>>> News.objects.create(title='hockey', content='stick', category=a)
+>>> b=News.objects.get(title='hockey')
+>>> b.content='stick and puck'
+>>> b.save()
+>>> Category.objects.all()
+>>> News.objects.all()
+>>> d=Category.objects.get(name='economic')
+>>> s=News.objects.get(id=2)
+>>> s.delete()
+>>> d.delete()
+>>> News.objects.filter(category=a)
