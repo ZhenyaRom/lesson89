@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+        <h1>Список постов</h1>
+        <ul>
+        {% for post in page_obj %}
+            <li>
+                {{ post.title }} ({{ post.created_at }})
+                <p>{{ post.content }}</p>
+            </li>
+        {% empty %}
+            <p>Нет постов.</p>
+        {% endfor %}
+        </ul>
+{% endblock %}
+{% block postinpage %}
+    {{ block.super }}
+{% endblock %}
+{% block gotopage %}
+    {{ block.super }}
+{% endblock %}

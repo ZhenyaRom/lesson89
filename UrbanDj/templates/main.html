@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+
+    {% block postinpage %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="select_page_len">Выберите количество постов на одной странице:</label>
+        <select name="page_len" id="select_page_len" style="font-size: inherit;">
+            <option>1</option>
+            <option>3</option>
+            <option>5</option>
+            <option>10</option>
+        </select>
+        <button type="submit" >Применить</button>
+    </form>
+    {% endblock %}
+
+    {% block gotopage %}
+        <div class="pagination">
+        <p>Страницы:</p>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}"><<</a>
+                <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+            |{{ page_obj.number }}|{{ paginator.num_pages }}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                <a href="?page={{ page_obj.next_page_number }}">>>></a>
+            {% endif %}
+    </div>
+    {% endblock %}
+
+</body>
+</html>
